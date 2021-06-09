@@ -9,7 +9,7 @@ Ky app pershfine:
     - Logout
 
 Wireframe dhe ERD e projektit:
-
+[Project wireframe](https://github.com/tringakrasniqi/favourite-books-aab/blob/main/Projec.PNG)
 
 Per egzekutimin e applikacionit:
  - Clone projektin ne lokalisht
