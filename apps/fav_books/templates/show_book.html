@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Favourite books</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+                <a href="/books" class="navbar-brand">Favourite Books</a>
+                <form action="/logout" method="POST" class="d-flex">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-light">Logout</button>
+                </form>
+        </div>
+    </nav>
+    <div class="container mt-5">
+            <h3>{{book_details.title}} </h3> 
+            <p>Author: {{book_details.author}}</p>
+            <p>Year published: {{book_details.published_year.year}}</p>
+            <p>ISBN: {{book_details.isbn_number}}</p>
+            <small><a href="/books/delete/{{book_details.id}}">Remove book</a></small>
+    </div>
+
+</body>
+</html>

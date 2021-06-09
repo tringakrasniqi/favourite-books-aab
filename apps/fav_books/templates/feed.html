@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Favourite books</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+
+      <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                  <a  href="/books" class="navbar-brand">Favourite Books</a>
+                  <div class="d-flex flex-row">
+                        <span class="navbar-text ">
+                              {{logged_user.name}}
+                        </span>
+                        <form action="/logout" method="POST" class="d-flex">
+                              {% csrf_token %}
+                              <button type="submit" class="btn btn-light">Logout</button>
+                        </form>
+                  </div>
+            </div>
+      </nav>
+      <div class="container">
+            <div class="row">
+                  <div class="mt-5 col s4">
+                        <h3>Add fav book</h3>
+                         <form action="/books/add_book" method="POST">
+                              {% csrf_token %}
+                              <div class="mb-3">
+                                    <label for="book_title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="book_title" name="book_title">
+                              </div>
+
+                              <div class="mb-3">
+                                    <label for="book_author" class="form-label">Author</label>
+                                    <input type="text" class="form-control" id="book_author" name="book_author">
+                              </div>
+
+                              <div class="mb-3">
+                                    <label for="book_isbn" class="form-label">ISBN</label>
+                                    <input type="number" class="form-control" id="book_isbn" name="book_isbn">
+                              </div>
+
+                              <div class="mb-3">
+                                    <label for="book_year_published" class="form-label">Year published</label>
+                                    <input type="number" class="form-control" id="book_year_published" name="book_year_published">
+                              </div>
+                              
+                              <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                  </div>
+                  <div class="mt-5 col s8">
+                        <h3>Your fav books</h3>
+                        <ul class="mt-4 list-group">
+                              {% for book in logged_user.has_books.all%}
+                                    <li class="list-group-item">{{ book.title }} | <a href="/books/{{book.id}}">View</a> | <a href="/books/delete/{{book.id}}">Delete</a> </li>
+                              {% endfor %}
+                        </ul>
+                  </div>
+            </div>
+      </div>
+</body>
+<html>
